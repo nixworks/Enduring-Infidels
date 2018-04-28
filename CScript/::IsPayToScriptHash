@@ -1,4 +1,3 @@
-IsPayToScriptHash
 
 +static bool IsPayToScriptHash(const Span<const unsigned char>& script)
 +{
