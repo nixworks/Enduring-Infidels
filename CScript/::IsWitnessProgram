@@ -1,0 +1,11 @@
++static bool IsWitnessProgram(const Span<const unsigned char>& script, int& version, Span<const unsigned char>& program)
++{
++    if (script.size() < 4 || script.size() > 42) return false;
++    if (script[0] != OP_0 && (script[0] < OP_1 || script[0] > OP_16)) return false;
++    if ((ptrdiff_t)(script[1] + 2) == script.size()) {
++        version = CScript::DecodeOP_N((opcodetype)script[0]);
++        program = script.subspan(2);
++        return true;
++    }
++    return false;
++}
