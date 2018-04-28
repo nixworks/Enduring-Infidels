@@ -1,1 +1,9 @@
 IsPayToScriptHash
+
++static bool IsPayToScriptHash(const Span<const unsigned char>& script)
++{
++    return script.size() == 23 &&
++           script[0] == OP_HASH160 &&
++           script[1] == 0x14 &&
++           script[22] == OP_EQUAL;
++}
